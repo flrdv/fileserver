@@ -1,0 +1,5 @@
+{{template "Header" .Back}}
+{{range .Entries}}
+<br>
+<a href="/{{.Path}}">{{.Name}}</a>
+{{end}}
