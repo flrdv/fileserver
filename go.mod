@@ -1,4 +1,4 @@
-module fileserver
+module github.com/fakefloordiv/fileserver
 
 go 1.18
 

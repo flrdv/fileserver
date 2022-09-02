@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"fileserver/pkg/service"
+	"github.com/fakefloordiv/fileserver/pkg/service"
 	"github.com/fakefloordiv/indigo/http/status"
 	"github.com/fakefloordiv/indigo/types"
 	"path"
