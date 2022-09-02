@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"fileserver/pkg/model"
+	"github.com/fakefloordiv/fileserver/pkg/model"
 	"os"
 	path2 "path"
 )

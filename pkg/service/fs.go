@@ -1,9 +1,9 @@
 package service
 
 import (
-	"fileserver/internal"
-	"fileserver/pkg/model"
-	"fileserver/pkg/repository"
+	"github.com/fakefloordiv/fileserver/internal"
+	"github.com/fakefloordiv/fileserver/pkg/model"
+	"github.com/fakefloordiv/fileserver/pkg/repository"
 	"html/template"
 )
 

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fileserver/pkg/controller"
-	"fileserver/pkg/repository"
-	"fileserver/pkg/service"
 	"fmt"
+	"github.com/fakefloordiv/fileserver/pkg/controller"
+	"github.com/fakefloordiv/fileserver/pkg/repository"
+	"github.com/fakefloordiv/fileserver/pkg/service"
 	"github.com/fakefloordiv/indigo"
 	methods "github.com/fakefloordiv/indigo/http/method"
 	"github.com/fakefloordiv/indigo/http/status"
