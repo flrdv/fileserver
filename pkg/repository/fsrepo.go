@@ -8,7 +8,7 @@ import (
 
 type FileSystemRepo interface {
 	ListDir(path string) ([]model.FileSystemObject, error)
-	ReadFile(path string) ([]byte, error)
+	ReadFile(path string) (string, error)
 	IsFile(path string) (bool, error)
 	GetParentDir(path string) string
 }
@@ -37,8 +37,9 @@ func (f fileSystemRepo) ListDir(path string) ([]model.FileSystemObject, error) {
 	return objects, nil
 }
 
-func (f fileSystemRepo) ReadFile(path string) ([]byte, error) {
-	return os.ReadFile(path)
+func (f fileSystemRepo) ReadFile(path string) (string, error) {
+	file, err := os.ReadFile(path)
+	return string(file), err
 }
 
 func (f fileSystemRepo) IsFile(path string) (bool, error) {

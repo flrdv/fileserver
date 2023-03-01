@@ -1,47 +1,51 @@
 package service
 
 import (
-	"github.com/fakefloordiv/fileserver/internal"
 	"github.com/fakefloordiv/fileserver/pkg/model"
 	"github.com/fakefloordiv/fileserver/pkg/repository"
-	"html/template"
+	"io"
+	"path"
 )
 
 type FSService interface {
-	RenderPage(path string) (page []byte, err error)
+	RenderPage(path string, writer io.Writer) error
 }
 
 type fsService struct {
-	fsRepo   repository.FileSystemRepo
-	template *template.Template
+	fsRepo    repository.FileSystemRepo
+	templates model.Templates
 }
 
-func NewFSService(fsRepo repository.FileSystemRepo, template *template.Template) FSService {
+func NewFSService(fsRepo repository.FileSystemRepo, templates model.Templates) FSService {
 	return fsService{
-		fsRepo:   fsRepo,
-		template: template,
+		fsRepo:    fsRepo,
+		templates: templates,
 	}
 }
 
-func (f fsService) RenderPage(path string) (page []byte, err error) {
-	isFile, err := f.fsRepo.IsFile(path)
+func (f fsService) RenderPage(p string, writer io.Writer) error {
+	isFile, err := f.fsRepo.IsFile(p)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	if isFile {
-		return f.fsRepo.ReadFile(path)
+		content, err := f.fsRepo.ReadFile(p)
+		if err != nil {
+			return err
+		}
+
+		filename := path.Base(p)
+
+		return f.templates.File.Execute(writer, model.NewFile(filename, content))
 	}
 
-	entries, err := f.getEntries(path)
+	entries, err := f.getEntries(p)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	wr := new(internal.Writer)
-	err = f.template.Execute(wr, entries)
-
-	return wr.Content(), err
+	return f.templates.Dir.Execute(writer, entries)
 }
 
 func (f fsService) getEntries(path string) (model.FileSystemEntries, error) {

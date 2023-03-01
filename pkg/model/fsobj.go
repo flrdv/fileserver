@@ -25,3 +25,22 @@ func (f FileSystemObject) Name() string {
 func (f FileSystemObject) Path() string {
 	return f.path
 }
+
+type File struct {
+	name, content string
+}
+
+func NewFile(name, content string) File {
+	return File{
+		name:    name,
+		content: content,
+	}
+}
+
+func (f File) Name() string {
+	return f.name
+}
+
+func (f File) Content() string {
+	return f.content
+}

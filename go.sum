@@ -1,3 +1,8 @@
-github.com/fakefloordiv/indigo v0.0.0-20220901130817-5342eb418dad h1:z9G0yoZ2DBsSvh/aNIKb2Erj/4TiwsO7wOshTarc87s=
-github.com/fakefloordiv/indigo v0.0.0-20220901183900-4e62fbaf2ef0 h1:oSzXoHEQ41MPfFHk7qr6EuNIU7g3M/6AwrzMS+tarDM=
-github.com/fakefloordiv/indigo v0.0.0-20220901183900-4e62fbaf2ef0/go.mod h1:97QVv1agJrxSeHZ7DZOOk5PszoOxtkzSAE0RUJ3LEsw=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/fakefloordiv/indigo v1.4.0-beta h1:uYTlGe//lgTl24CLXIUODXgd7V0abc9QMVIw+5nt9/Y=
+github.com/fakefloordiv/indigo v1.4.0-beta/go.mod h1:97QVv1agJrxSeHZ7DZOOk5PszoOxtkzSAE0RUJ3LEsw=
+github.com/indigo-web/indigo/v2 v2.3.1-beta h1:vFwJLlsBReR50mJIRJVKweBh9hqWt+y/AwkxTZL9SsE=
+github.com/indigo-web/indigo/v2 v2.3.1-beta/go.mod h1:PaVaLiIWsFWVsMOF58liURe4I2+MKHt5PlTw5lhJNnM=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PKk=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
