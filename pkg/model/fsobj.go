@@ -1,9 +1,8 @@
 package model
 
 type FileSystemObject struct {
-	isFile bool
-	name   string
-	path   string
+	isFile     bool
+	name, path string
 }
 
 func NewFileSystemObject(isFile bool, name, path string) FileSystemObject {

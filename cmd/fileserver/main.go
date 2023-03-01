@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/fakefloordiv/fileserver/pkg/controller"
 	"github.com/fakefloordiv/fileserver/pkg/model"
@@ -28,9 +29,9 @@ func RunFileServer(addr, root string) error {
 	}
 	templates := model.NewTemplates(dirTemplate, fileTemplate)
 	fsRepo := repository.NewFileSystemRepo()
-	fsService := service.NewFSService(fsRepo, templates)
+	fsService := service.NewFSService(fsRepo, templates, root)
 
-	indigoController := controller.NewHTTPController(root, fsService)
+	indigoController := controller.NewHTTPController(fsService)
 
 	fmt.Println("Listening on", addr)
 
@@ -57,6 +58,7 @@ func runHTTPServer(addr string, controller controller.HTTPController) error {
 }
 
 func main() {
-	// TODO: parse command line options to receive a root from there
-	log.Fatal(RunFileServer(addr, "."))
+	root := flag.String("root", ".", "Root file server path")
+	flag.Parse()
+	log.Fatal(RunFileServer(addr, *root))
 }

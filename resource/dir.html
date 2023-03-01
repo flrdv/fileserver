@@ -1,5 +1,5 @@
-{{template "Header" .Back}}
-{{range .Entries}}
+{{template "Header"}}
+{{range .}}
 <br>
-<a href="/{{.Path}}">{{.Name}}</a>
+<a href="{{.Path}}">{{.Name}}</a>
 {{end}}

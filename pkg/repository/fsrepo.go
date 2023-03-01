@@ -3,11 +3,11 @@ package repository
 import (
 	"github.com/fakefloordiv/fileserver/pkg/model"
 	"os"
-	path2 "path"
+	"path"
 )
 
 type FileSystemRepo interface {
-	ListDir(path string) ([]model.FileSystemObject, error)
+	ListDir(root, path string) ([]model.FileSystemObject, error)
 	ReadFile(path string) (string, error)
 	IsFile(path string) (bool, error)
 	GetParentDir(path string) string
@@ -20,8 +20,8 @@ func NewFileSystemRepo() FileSystemRepo {
 	return fileSystemRepo{}
 }
 
-func (f fileSystemRepo) ListDir(path string) ([]model.FileSystemObject, error) {
-	entries, err := os.ReadDir(path)
+func (f fileSystemRepo) ListDir(root, relative string) ([]model.FileSystemObject, error) {
+	entries, err := os.ReadDir(path.Join(root, relative))
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +30,7 @@ func (f fileSystemRepo) ListDir(path string) ([]model.FileSystemObject, error) {
 
 	for _, entry := range entries {
 		objects = append(objects, model.NewFileSystemObject(
-			!entry.IsDir(), entry.Name(), path2.Join(path, entry.Name()),
+			!entry.IsDir(), entry.Name(), path.Join(relative, entry.Name()),
 		))
 	}
 
@@ -51,6 +51,6 @@ func (f fileSystemRepo) IsFile(path string) (bool, error) {
 	return !stat.IsDir(), nil
 }
 
-func (f fileSystemRepo) GetParentDir(path string) string {
-	return path2.Dir(path)
+func (f fileSystemRepo) GetParentDir(child string) string {
+	return path.Dir(child)
 }
